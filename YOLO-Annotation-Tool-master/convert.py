@@ -4,7 +4,7 @@ from os import walk, getcwd
 from PIL import Image
 
 
-classes = ["003"]
+classes = ["007"]
 
 
 
@@ -28,13 +28,13 @@ def convert(size, box):
 #first we are take first object input path
 #The example have 001 folder and it is must. Please dont delete this
 """ Configure Paths"""
-mypath = "./Labels/003/"
+mypath = "./Labels/007/"
 outpath = "./Labels/output/"
 if not os.path.exists(outpath):
     os.mkdir(outpath)
 #cls is which object you want to train
 #now we are train first object
-cls = "003"
+cls = "007"
 if cls not in classes:
     exit(0)
 cls_id = classes.index(cls)
