@@ -15,12 +15,15 @@ def angles(cone_x, camera_x, fov):
     
 cone = bpy.data.objects["Cube.001"]
 camera = bpy.data.objects["Camera"]
+lamp_data = bpy.data.lamps.new(name="New Lamp", type='POINT')
+lamp_object = bpy.data.objects.new(name="New Lamp", object_data=lamp_data)
+bpy.context.scene.objects.link(lamp_object)
 plane = bpy.data.objects["BBox"]
 mesh = plane.data
 mat_world_plane = plane.matrix_world
 cs, ce = camera.data.clip_start, camera.data.clip_end
 
-path = '/home/bangpoulsen/Documents/Renders/'
+path = '/home/josef/Driverless/'
 within = False
 for i in range(1, 21):
 
@@ -34,6 +37,9 @@ for i in range(1, 21):
     z = random.uniform(-height_from_center, height_from_center)
     print(repr(x) + ' ' + repr(y) + ' ' + repr(z))
     cone.location = (x, y, z)
+    lamp_object.location = (x, y, z+1)
+    lamp_object.select = True
+    bpy.context.scene.objects.active = lamp_object
     plane.location = (x, y, z+1.368449)
     
     bpy.context.scene.objects.active = plane
